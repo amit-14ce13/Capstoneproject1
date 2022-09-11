@@ -1,6 +1,8 @@
 import requests
 import json
 
+list1 = []
+
 
 class MakeApiCall:
 
@@ -40,8 +42,10 @@ class MakeApiCall:
                     products = list(self.get_data(productUrl))
                     #print((products))
                     for product in products:
+                        #productDetaillist = []
                         productDetails = list(product["products"])
                         for productDetail in productDetails:
+                            productDetaillist = []
                             productDetailId = productDetail["nodeID"]
                             #print(productDetailId)
                             prductDetailUrl = "https://webapi.vermeer.com/integrations/external/vcom/v1/products/"+str(productDetailId)+"?documentculture=en-us&regions=NorthAmerica"
@@ -53,7 +57,16 @@ class MakeApiCall:
                                 pdSpecificationUrl = "https://webapi.vermeer.com/integrations/external/vcom/v1/equipment/"+str(eqipId)+"/specifications?cmsLanguageID=1&displayFilter=0"
                                 #print(pdSpecificationUrl)
                                 pdSpecification = list(self.get_data(pdSpecificationUrl))
-                                print(pdSpecification)
+                                #print(pdSpecification)
+                                pdDetail["pdSpecification"]=pdSpecification
+                                productDetaillist.append(pdDetail)
+                            dict1 = {}
+                            dict1["industry"] = industry
+                            dict1["productline"] =productLine
+                            dict1["product"] = product
+                            dict1["productDetailist"] =productDetaillist
+                            list1.append(dict1)
+
 
 
 
@@ -71,4 +84,6 @@ class MakeApiCall:
 if __name__ == "__main__":
     api_call = MakeApiCall(
         "https://webapi.vermeer.com/integrations/external/vcom/v1/industries?documentculture=en-us&regions=NorthAmerica")
+    print(list1[1])
+    print(len(list1))
     # api_call1 = MakeApiCall("https://webapi.vermeer.com/integrations/external/vcom/v1/industries/7196?documentculture=en-us&regions=NorthAmerica")
