@@ -84,6 +84,8 @@ class MakeApiCall:
 if __name__ == "__main__":
     api_call = MakeApiCall(
         "https://webapi.vermeer.com/integrations/external/vcom/v1/industries?documentculture=en-us&regions=NorthAmerica")
-    print(list1[1])
+    print(list1[-1])
     print(len(list1))
     # api_call1 = MakeApiCall("https://webapi.vermeer.com/integrations/external/vcom/v1/industries/7196?documentculture=en-us&regions=NorthAmerica")
+with open('list1.json', 'w', encoding='utf-8') as extractfile:
+    json.dump(list1, extractfile, ensure_ascii=False, indent=4)
