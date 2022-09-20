@@ -2,6 +2,8 @@ import json
 with open("list1.json") as file:
     data = json.load(file)
 
+
+
 for dict in data:
     list3 = []
     pdlist = dict["productDetailist"]

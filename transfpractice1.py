@@ -2,7 +2,7 @@ import json
 with open("list1.json") as file:
     data = json.load(file)
 #print(data[0])
-list2 = []
+genList = []
 for entry in data:
     if entry["productDetailist"]:
         dict2 = {"general": {
@@ -16,13 +16,10 @@ for entry in data:
             "countries": [
                 "US"
             ]
-        },
-               "images": [
-                   {}
-               ]
         }
-        list2.append(dict2)
-print(list2[0])
+        }
+        genList.append(dict2)
+print(genList[1])
 
 
 
